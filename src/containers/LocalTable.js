@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
 import TableEditModal from '../components/TableEditModal';
+import Container from '@mui/material/Container';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
@@ -15,6 +16,7 @@ import { Modal } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 
 export function LocalTable (props) {
         
@@ -36,8 +38,15 @@ const handleClose = () => {
 }
 
 const handleModalChange = (event) => {
+    if (event.target.id === 'like') {
+    console.log(event.target.checked)
+    setModalData({...modalData, [event.target.id]: event.target.checked})
+    }
+    else {
     console.log(event.target.id)
     setModalData({...modalData, [event.target.id]: event.target.value})
+    console.log(event.target.value)
+    }
 }
 
 const modalStyle = {
@@ -56,7 +65,7 @@ const modalStyle = {
   
     return ( 
         
-        <div>
+        <Container maxWidth="l">
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -93,15 +102,16 @@ const modalStyle = {
                 </Table>
             </TableContainer>
             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                <Box sx={modalStyle}>
+                <Box component='form' sx={modalStyle}>
                     <TextField id="translation" label="Type" value={modalData.translation} onChange={handleModalChange} />
                     <TextField  id="text" label="Input" value={modalData.text} onChange={handleModalChange} />
                     <TextField  id="translated" label="Output" value={modalData.translated} onChange={handleModalChange} />
-                    <TextField  id="like" label="Like" value={modalData.like} onChange={handleModalChange} /> 
+                    <Checkbox id="like" icon={<FavoriteBorderRoundedIcon />} checkedIcon={<FavoriteRoundedIcon />} checked={modalData.like} inputProps={{ 'aria-label': 'controlled' }} onChange={handleModalChange}  />
                     <Button variant="contained" onClick={() => props.editLocalData(modalData)}>Save</Button>
+                    <Button variant="contained" onClick={handleClose}>Close</Button>
                 </Box> 
             </Modal>
-        </div>
+        </Container>
      );
 }
 

@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import {InputForm} from './InputForm';
 import {TranslateData, GetLocalTranslations, AddLocalTranslation, EditLocalTranslations, DeleteLocalTranslations} from '../apis/Translate';
@@ -46,8 +47,9 @@ function App() {
   }
 
   function editLocalData(translation) {
-    EditLocalTranslations(translation)
+    return EditLocalTranslations(translation)
     .then(setLocalData([...localData,translation]))
+    .then
   }
 
   function deleteLocalData(id) {
@@ -99,11 +101,28 @@ function App() {
 
   return (
     <div className="App">
-      <InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} />
-      {outputContents.text !== '' &&  <OutputText outputContents={outputContents} saveLocalData={saveLocalData} />}
-      <LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />
+      <h1>Hello</h1>
+      <Routes>
+        <Route path="/" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
+        
+        <Route path="/savedlocally" element={<LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />} />
+      </Routes>
+
+      
+
+      
     </div>
   );
 }
+/* 
+      <Routes>
+        <Route path="/" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
+        
+        <Route path="savedlocally" element={<LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />} />
+      </Routes>
 
+    <InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>
+    <LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />
+
+ */
 export default App;
