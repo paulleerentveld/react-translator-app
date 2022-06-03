@@ -1,0 +1,47 @@
+{
+  "translations": [
+    {
+      "translated": "A test,  this is",
+      "text": "This is a test",
+      "translation": "yoda",
+      "id": 3,
+      "like": true
+    },
+    {
+      "translated": "Bello globo",
+      "text": "Hello World",
+      "translation": "minion",
+      "id": 4,
+      "like": true
+    },
+    {
+      "translated": "Tonk'peh panu",
+      "text": "Hello World",
+      "translation": "vulcan",
+      "id": 5,
+      "like": false
+    },
+    {
+      "translated": "Hellop",
+      "text": "Hello",
+      "translation": "dothraki",
+      "id": 6,
+      "like": true
+    },
+    {
+      "translated": "Rytsas",
+      "text": "Hello",
+      "translation": "valyrian",
+      "id": 7,
+      "like": true
+    },
+    {
+      "translated": "Rytsas",
+      "text": "Hello",
+      "translation": "valyrian",
+      "id": 8,
+      "like": false
+    }
+  ],
+  "favorites": []
+}
