@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { OutputText } from './OutputText';
+import { OutputText } from '../components/OutputText';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';

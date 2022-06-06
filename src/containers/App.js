@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import {InputForm} from './InputForm';
 import {TranslateData, GetLocalTranslations, AddLocalTranslation, EditLocalTranslations, DeleteLocalTranslations} from '../apis/Translate';
-import { OutputText } from './OutputText';
 import { LocalTable } from './LocalTable';
+import NavBar from './NavBar';
+import { Home } from '../components/Home';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -101,11 +102,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello</h1>
+      
+      <NavBar />
       <Routes>
-        <Route path="/" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
-        
+        <Route path="/" element={<Home />} />
+        <Route path="/translate" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
         <Route path="/savedlocally" element={<LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />} />
+        <Route path="/about" element={<LocalTable />} />
       </Routes>
 
       
