@@ -19,7 +19,7 @@
       "text": "Hello World",
       "translation": "vulcan",
       "id": 5,
-      "like": true
+      "like": false
     },
     {
       "translated": "Hellop",
@@ -36,32 +36,39 @@
       "like": true
     },
     {
-      "translated": "Rytsas",
-      "text": "Hello test",
-      "translation": "valyrian",
-      "id": 8,
-      "like": true
-    },
-    {
-      "translated": "Test",
-      "text": "New test",
-      "translation": "yoda",
-      "id": 9,
-      "like": true
-    },
-    {
-      "translated": "A test,  this is Test",
-      "text": "This is a test Test",
-      "translation": "yoda Test",
-      "id": 10,
-      "like": true
-    },
-    {
       "translated": "A test,  this is",
       "text": "This is a test",
       "translation": "yoda",
       "id": 11,
       "like": true
+    },
+    {
+      "translated": "Bisa iksos nykeā test",
+      "text": "This is a test",
+      "translation": "valyrian",
+      "id": 12,
+      "like": true
+    },
+    {
+      "translated": "G'day how are you",
+      "text": "Hello how are you",
+      "translation": "australian",
+      "id": 13,
+      "like": true
+    },
+    {
+      "translated": "Valar morghūlis",
+      "text": "All men must die",
+      "translation": "valyrian",
+      "like": true,
+      "id": 14
+    },
+    {
+      "translated": "Hodor hodor hodor hodor!",
+      "text": "This is a test!",
+      "translation": "hodor",
+      "like": false,
+      "id": 15
     }
   ]
 }

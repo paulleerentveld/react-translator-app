@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-import TableEditModal from '../components/TableEditModal';
 import Container from '@mui/material/Container';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
@@ -17,35 +16,35 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import Typography from '@mui/material/Typography';
+
 
 export function LocalTable (props) {
         
 const [open, setOpen] =useState(false);
-const [modalId, setModalId] = useState(null);
 const [modalData,setModalData] = useState({});
 
-//Grab JSON local data on render
 
 
+//Open modal function
 const handleOpen = (row) => {
     setOpen(true);
     setModalData(row)
-    console.log(modalData)
 }
+
+//Close modal function
 const handleClose = () => {
     setOpen(false); 
     setModalData([]);
 }
 
+//Edit function for Modal
 const handleModalChange = (event) => {
     if (event.target.id === 'like') {
-    console.log(event.target.checked)
-    setModalData({...modalData, [event.target.id]: event.target.checked})
+    return setModalData({...modalData, [event.target.id]: event.target.checked})
     }
     else {
-    console.log(event.target.id)
-    setModalData({...modalData, [event.target.id]: event.target.value})
-    console.log(event.target.value)
+    return setModalData({...modalData, [event.target.id]: event.target.value})
     }
 }
 
@@ -66,6 +65,7 @@ const modalStyle = {
     return ( 
         
         <Container maxWidth="l">
+            <Typography variant='h5' mb={5}>Locally Saved Translations to JSON File</Typography>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -78,11 +78,9 @@ const modalStyle = {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {props.localData.length > 0 && props.localData.map((row) => (
-                        <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        <TableCell component="th" scope="row">
-                            {row.translation}
-                        </TableCell>
+                    {props.localData.length > 0 && props.localData.map((row, index) => (
+                        <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableCell>{row.translation}</TableCell>
                         <TableCell align="right">{row.text}</TableCell>
                         <TableCell align="right">{row.translated}</TableCell>
                         <TableCell align="right">

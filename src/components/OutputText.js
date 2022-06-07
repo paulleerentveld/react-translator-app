@@ -1,8 +1,6 @@
 import React, { Component, useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -42,7 +40,7 @@ export function OutputText (props) {
                   <Typography>"{props.outputContents.translated}"</Typography>
                 </Item>
               </Grid>
-              <Grid item xs={9}>
+              <Grid mb={5} item xs={9}>
                 <Button fullWidth variant="contained" onClick={() => props.saveLocalData(props.outputContents)} >Save to Local Data</Button>
               </Grid>
             </Grid>

@@ -7,42 +7,80 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { ListItem, MenuItem } from '@mui/material';
+import Menu from '@mui/material/Menu';
+import { ListItem, MenuItem, ListItemText } from '@mui/material';
 
 const NavBar = () => {
-  return (
-    <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-      
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-      <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+      };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+      };
+
+  return (
+    <Box sx={{ flexGrow: 1 }} mb={5}>
+      <AppBar position="fixed">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2, display: { xs: 'block', md: 'none' } }}
+            onClick={handleOpenNavMenu}
+          >
             <MenuIcon />
-            
           </IconButton>
-          <MenuItem variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
-          </MenuItem>
-          <MenuItem variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <NavLink style={{ marginRight: '10px' }} to="/translate">Translate</NavLink>
-          </MenuItem>
-          <MenuItem variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <NavLink style={{ marginRight: '10px' }} to="/savedlocally">Saved Locally</NavLink>
-          </MenuItem>
-          <MenuItem variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <NavLink style={{ marginRight: '10px' }} to="/about">About</NavLink>
-          </MenuItem>
-            
-            
-            
-            
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            TRANSLATOR-APP
+          </Typography>
+          <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+                <MenuItem component={NavLink} to="/">
+                    Home
+                </MenuItem>
+                <MenuItem component={NavLink} to="/translate">
+                    Translate
+                </MenuItem>
+                <MenuItem component={NavLink} to="/savedlocally">
+                    Saved Translations
+                </MenuItem>
+            </Menu>
+            <Box sx={{ flexGrow: 2, display: { xs: 'none', md: 'flex' } }}>
+                <Button color="inherit" component={NavLink} to="/" >
+                    Home
+                </Button>
+                <Button color="inherit" component={NavLink} to="/translate">
+                    Translate
+                </Button>
+                <Button color="inherit" component={NavLink} to="/savedlocally">
+                    Saved Translations
+                </Button>
+          </Box>
         </Toolbar>
       </AppBar>
+      <Toolbar />
     </Box>
-
-
-    </div>
   );
 }
 

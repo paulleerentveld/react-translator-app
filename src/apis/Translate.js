@@ -2,9 +2,8 @@ import React from 'react';
 
 
 
-
+//Live fetch to translate phrase, **Note limited to 5 requests per hour
 export function TranslateData(type,input) {
-    //Live fetch, **Note limited to 5 requests per hour
     return fetch(`https://api.funtranslations.com/translate/${type}.json?text=${input}`) 
         .then(response => response.json())
         .then((data) => data)
@@ -14,7 +13,7 @@ export function TranslateData(type,input) {
           });
 }
 
-
+//Fetch local JSON Data for table
 export function GetLocalTranslations() {
     return fetch(`http://localhost:3001/translations`) 
         .then(response => response.json())
@@ -25,6 +24,7 @@ export function GetLocalTranslations() {
           });
 }
 
+//POST to local JSON data
 export function AddLocalTranslation(translation) {
     return fetch('http://localhost:3001/translations',{
         method: 'POST',
@@ -35,7 +35,7 @@ export function AddLocalTranslation(translation) {
     })
 }
 
-
+//Edit (PATCH) to lcoal JSON data
 export function EditLocalTranslations(translation) {
     return fetch(`http://localhost:3001/translations/${translation.id}`,{
         method: 'PATCH',
@@ -46,6 +46,7 @@ export function EditLocalTranslations(translation) {
     })
 }
 
+//Delete from local JSON data
 export function DeleteLocalTranslations(id) {
     return fetch(`http://localhost:3001/translations/${id}`,{
         method: 'DELETE',
@@ -56,4 +57,3 @@ export function DeleteLocalTranslations(id) {
 
 
 }
-

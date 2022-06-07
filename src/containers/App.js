@@ -25,13 +25,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  //State Data
+  //States
   const [selectedType, setSelectedType] = useState('default');
   const [input,setinput] = useState('');
   const [outputContents,setOutputContents] = useState({
         text: '',
         translated: '',
-        translation: ''
+        translation: '',
+        like: ''
     })
   const [localData,setLocalData] = useState([]);
 
@@ -43,21 +44,25 @@ function App() {
 
 //Save to JSON and update localData state
   function saveLocalData(translation) {
-    AddLocalTranslation(translation)
+    let newTranslation = translation;
+    newTranslation.like = false;
+    return AddLocalTranslation(newTranslation)
     .then(setLocalData([...localData,translation]))
   }
 
+ //Edit data on table, change state and local JSON 
   function editLocalData(translation) {
     return EditLocalTranslations(translation)
     .then(setLocalData([...localData,translation]))
-    .then
   }
 
+//Edit table data, delete state entry and local JSON
   function deleteLocalData(id) {
     DeleteLocalTranslations(id)
     .then(setLocalData(localData.filter(data => data.id !== id)))
   }
 
+//Like button, change like state and edit JSON
   function handleLike(translation) {
     let index = localData.findIndex(x => x.id === translation.id)
     let tempTranlation = translation
@@ -65,15 +70,17 @@ function App() {
     if (translation.like === false || translation.like === undefined) {
       tempTranlation.like = true  
       tempLocalData[index] = tempTranlation
-      setLocalData(tempLocalData)
-      console.log(tempTranlation.id)
-      EditLocalTranslations(tempTranlation)
+      return EditLocalTranslations(tempTranlation)
+      .then(setLocalData(tempLocalData))
+      
+      //console.log(tempTranlation.id)
   }
     else 
     tempLocalData[index].like = false
-    setLocalData(tempLocalData)
-    console.log(tempTranlation.id)
-    EditLocalTranslations(tempTranlation)
+    return EditLocalTranslations(tempTranlation)
+    .then(setLocalData(tempLocalData))
+    
+    //console.log(tempTranlation.id)
     
   }
 
@@ -108,24 +115,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/translate" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
         <Route path="/savedlocally" element={<LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />} />
-        <Route path="/about" element={<LocalTable />} />
       </Routes>
-
-      
-
-      
     </div>
   );
 }
-/* 
-      <Routes>
-        <Route path="/" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />
-        
-        <Route path="savedlocally" element={<LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />} />
-      </Routes>
 
-    <InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>
-    <LocalTable localData={localData} editLocalData={editLocalData} deleteLocalData={deleteLocalData} handleLike={handleLike} />
-
- */
 export default App;

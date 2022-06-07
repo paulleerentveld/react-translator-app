@@ -1,0 +1,3 @@
+- When liking directly on table, table does not re-render
+- Edit modal when saving getting duplicate keys in children on tablebody - FIXED, used the index with second parameter of map function
+- Success message on save locally

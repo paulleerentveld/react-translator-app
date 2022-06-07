@@ -31,15 +31,15 @@ export function InputForm (props) {
           <Grid container spacing={2} justifyContent="center">
               <Grid item xs={9}>
               <FormControl sx={{m: 1, minWidth: 200}} >
-                    <InputLabel id="type">Translator Type:</InputLabel>
+                    <InputLabel id="type">Translator Type</InputLabel>
                     <Select
-                    labelId="demo-simple-select-label"
+                    labelId="type"
                     id="demo-simple-select"
                     value={props.selectedType}
                     label="TranslatorType"
                     onChange={(event) => props.handleTypeChange(event.target.value)}
                     >
-                        <MenuItem value='default' disabled hidden>Choose a language...</MenuItem>
+                        <MenuItem value='default' disabled hidden>Choose a translation type...</MenuItem>
                         <MenuItem value="yoda">Yoda</MenuItem>
                         <MenuItem value="pirate">Pirate</MenuItem>
                         <MenuItem value="minion">Minion</MenuItem>
@@ -49,7 +49,7 @@ export function InputForm (props) {
                         <MenuItem value="dothraki">Dothraki</MenuItem>
                         <MenuItem value="valyrian">Valyrian</MenuItem>
                     </Select>
-                    <TextField sx={{m: 1, minWidth: 600}} label="InputText" id="inputText" onChange={(event) => props.handleInputChange(event.target.value)} />
+                    <TextField sx={{mt: 1, mb:2,  minWidth: 600}} label="Input Text to translate..." id="inputText" onChange={(event) => props.handleInputChange(event.target.value)} />
                     <Button variant="contained" onClick={(event) => props.handleSubmit(event)}>Translate</Button>
                 </FormControl>
                 </Grid>
