@@ -7,22 +7,7 @@ import { LocalTable } from './LocalTable';
 import NavBar from './NavBar';
 import { Home } from '../components/Home';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCaFPhAzSXaizhiqS7TCcwBl__HCS5cCEc",
-  authDomain: "react-translator-app.firebaseapp.com",
-  projectId: "react-translator-app",
-  storageBucket: "react-translator-app.appspot.com",
-  messagingSenderId: "739140817683",
-  appId: "1:739140817683:web:21a463a7018ab7e24200e6"
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 function App() {
   //States
