@@ -5,7 +5,7 @@
       "text": "This is a test",
       "translation": "yoda",
       "id": 3,
-      "like": true
+      "like": false
     },
     {
       "translated": "Bello globo",
@@ -19,14 +19,14 @@
       "text": "Hello World",
       "translation": "vulcan",
       "id": 5,
-      "like": false
+      "like": true
     },
     {
       "translated": "Hellop",
       "text": "Hello",
       "translation": "dothraki",
       "id": 6,
-      "like": false
+      "like": true
     },
     {
       "translated": "Rytsas",

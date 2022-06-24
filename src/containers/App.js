@@ -35,12 +35,19 @@ function App() {
         like: ''
     })
   const [localData,setLocalData] = useState([]);
+  const [fetchError, setFetchError] = useState(false);
 
-//Grab JSON local data on render
-  useEffect(() => {
-    GetLocalTranslations()
-    .then(localTranslations => setLocalData(localTranslations)); 
-  }, [localData.length])
+//Grab JSON local data on render with useEffect
+  // useEffect(() => {
+  //   GetLocalTranslations()
+  //   .then(localTranslations => setLocalData(localTranslations))
+  //   .catch((error) => {
+  //     console.log(error)
+  //     setFetchError(true)
+  //     console.log(fetchError)
+  //   }) 
+
+  // }, [])
 
 //Save to JSON and update localData state
   function saveLocalData(translation) {
@@ -56,7 +63,7 @@ function App() {
     .then(setLocalData([...localData,translation]))
   }
 
-//Edit table data, delete state entry and local JSON
+//Delete table data, delete state entry and local JSON
   function deleteLocalData(id) {
     DeleteLocalTranslations(id)
     .then(setLocalData(localData.filter(data => data.id !== id)))
@@ -69,14 +76,16 @@ function App() {
     let tempLocalData = localData
     if (translation.like === false || translation.like === undefined) {
       tempTranlation.like = true  
-      tempLocalData[index] = tempTranlation
-      return EditLocalTranslations(tempTranlation)
+      tempLocalData[index]["like"] = true
+      console.log(tempTranlation)
+      return EditLocalTranslations({...tempTranlation, like: !tempTranlation.like})
       .then(setLocalData(tempLocalData))
       
       //console.log(tempTranlation.id)
   }
     else 
-    tempLocalData[index].like = false
+    tempLocalData[index]["like"] = false
+    console.log(tempLocalData)
     return EditLocalTranslations(tempTranlation)
     .then(setLocalData(tempLocalData))
     
@@ -105,12 +114,20 @@ function App() {
       setinput(event)
   }
 
+  function errorMessage() {
+    return <p>The Fetch Failed</p>
+  }
 
 
   return (
     <div className="App">
       
       <NavBar />
+      {fetchError == true ?
+        errorMessage()
+        :
+        null
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/translate" element={<InputForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleTypeChange={handleTypeChange} selectedType={selectedType} outputContents={outputContents} saveLocalData={saveLocalData}/>} />

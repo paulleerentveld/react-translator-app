@@ -18,10 +18,6 @@ export function GetLocalTranslations() {
     return fetch(`http://localhost:3001/translations`) 
         .then(response => response.json())
         .then((data) => data)
-        .catch(function(err) {
-            console.log('Error: ' + err);
-            alert('Error: ' + err);
-          });
 }
 
 //POST to local JSON data
